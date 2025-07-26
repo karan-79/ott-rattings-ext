@@ -2,6 +2,7 @@
 
 Enhance your streaming experience by instantly surfacing external ratings (IMDb, Rotten Tomatoes, Metacritic) for movies and shows on major OTT platforms. Get real-time insights without leaving your favorite streaming service!
 
+
 ## ✨ Features
 
 *   **Cross-Platform Compatibility:** Designed to work seamlessly across popular streaming platforms like Netflix, Amazon Prime Video, Disney+ Hotstar, Hulu, and more.
