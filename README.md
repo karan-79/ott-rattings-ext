@@ -4,7 +4,7 @@ Enhance your streaming experience by instantly surfacing external ratings (IMDb,
 
 ## ✨ Features
 
-*   **Cross-Platform Compatibility:** Designed to work seamlessly across popular streaming platforms like Netflix, Amazon Prime Video, Disney+ Hotstar, Hulu, and more.
+*   **Cross-Platform Compatibility:** Designed to work seamlessly across popular streaming platforms like Netflix, Amazon Prime Video, Disney+ Hotstar, and more. (Initial support for Hulu, with dedicated selectors to be added.)
 *   **Real-time Title Detection:** Automatically detects the movie or show title you're hovering over, previewing, or actively watching, adapting to various DOM structures.
 *   **Aggregated Ratings & Metadata:** Fetches and displays consolidated ratings and additional information from OMDb API:
     *   **IMDb Rating**
