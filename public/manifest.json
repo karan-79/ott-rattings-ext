@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "OTT Ratings",
+  "version": "0.1.0",
+  "description": "Displays IMDb, Rotten Tomatoes, and Metacritic ratings on popular streaming services.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*.netflix.com/*",
+    "*://*.primevideo.com/*",
+    "*://*.hotstar.com/*",
+    "*://*.hulu.com/*"
+  ],
+  "background": {
+    "service_worker": "assets/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.netflix.com/*",
+        "*://*.primevideo.com/*",
+        "*://*.hotstar.com/*",
+        "*://*.hulu.com/*"
+      ],
+      "js": ["assets/content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/ui.js", "assets/client.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
