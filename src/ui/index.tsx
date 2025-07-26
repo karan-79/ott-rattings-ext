@@ -17,22 +17,20 @@ window.addEventListener('message', (event) => {
   }
 
   if (event.data.type === 'UPDATE_RATINGS_OVERLAY') {
-    const { ratings, position } = event.data.payload;
+    const { response, rect } = event.data.payload;
+    const { ratings, searchedTitle, status } = response;
 
     reactRoot.render(
-      <div style={{
-        position: 'absolute',
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-        display: 'block',
-      }}>
-        <RatingsOverlay
-          imdb={ratings?.imdb}
-          rottenTomatoes={ratings?.rottenTomatoes}
-          metacritic={ratings?.metacritic}
-        />
-      </div>
+      <RatingsOverlay
+        imdb={ratings?.imdb}
+        rottenTomatoes={ratings?.rottenTomatoes}
+        metacritic={ratings?.metacritic}
+        searchedTitle={searchedTitle}
+        rect={rect}
+        status={status}
+      />
     );
+
   } else if (event.data.type === 'HIDE_RATINGS_OVERLAY') {
     reactRoot.render(null); // Unmount the component to hide it
   }

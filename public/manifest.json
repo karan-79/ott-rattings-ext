@@ -12,6 +12,8 @@
     "*://*.netflix.com/*",
     "*://*.primevideo.com/*",
     "*://*.hotstar.com/*",
+    "*://hotstar.com/*",
+    "*://*.disneyhotstar.com/*",
     "*://*.hulu.com/*"
   ],
   "background": {
@@ -24,6 +26,8 @@
         "*://*.netflix.com/*",
         "*://*.primevideo.com/*",
         "*://*.hotstar.com/*",
+        "*://hotstar.com/*",
+        "*://*.disneyhotstar.com/*",
         "*://*.hulu.com/*"
       ],
       "js": ["assets/content.js"]
