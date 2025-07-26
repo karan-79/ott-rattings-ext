@@ -7,26 +7,52 @@ interface RatingsOverlayProps {
 }
 
 const RatingsOverlay: React.FC<RatingsOverlayProps> = ({ imdb, rottenTomatoes, metacritic }) => {
+  const hasRatings = imdb || rottenTomatoes || metacritic;
+
   return (
     <div style={{
       position: 'absolute',
-      backgroundColor: 'rgba(255, 0, 0, 0.9)', // Bright red background for visibility
-      color: 'white',
-      padding: '8px 12px',
-      borderRadius: '5px',
-      zIndex: 99999, // Ensure it's on top of everything
-      fontSize: '14px',
+      backgroundColor: 'rgba(20, 20, 20, 0.9)', // Dark, slightly transparent background
+      color: '#E0E0E0', // Light grey text
+      padding: '10px 15px',
+      borderRadius: '8px',
+      zIndex: 99999, // Ensure it's on top
+      fontSize: '13px',
+      fontFamily: 'Inter, sans-serif', // Modern font stack
       pointerEvents: 'none',
       whiteSpace: 'nowrap',
-      border: '2px solid yellow', // Yellow border for extra visibility
-      minWidth: '150px', // Ensure it has some size
-      boxSizing: 'border-box'
+      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)', // Subtle shadow
+      backdropFilter: 'blur(8px)', // Frosted glass effect
+      WebkitBackdropFilter: 'blur(8px)', // For Safari compatibility
+      border: '1px solid rgba(255, 255, 255, 0.1)', // Very subtle light border
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '4px',
     }}>
-      <p style={{ margin: '0 0 5px 0', fontWeight: 'bold' }}>Ratings:</p>
-      {imdb && <p style={{ margin: '0' }}>IMDb: {imdb}</p>}
-      {rottenTomatoes && <p style={{ margin: '0' }}>Rotten Tomatoes: {rottenTomatoes}</p>}
-      {metacritic && <p style={{ margin: '0' }}>Metacritic: {metacritic}</p>}
-      {!imdb && !rottenTomatoes && !metacritic && <p style={{ margin: '0' }}>No ratings available.</p>}
+      {hasRatings ? (
+        <>
+          {imdb && (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <span style={{ fontWeight: 'bold', color: '#F5C518', marginRight: '5px' }}>IMDb:</span>
+              <span>{imdb}</span>
+            </div>
+          )}
+          {rottenTomatoes && (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <span style={{ fontWeight: 'bold', color: '#FA320A', marginRight: '5px' }}>RT:</span>
+              <span>{rottenTomatoes}</span>
+            </div>
+          )}
+          {metacritic && (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <span style={{ fontWeight: 'bold', color: '#6C3', marginRight: '5px' }}>MC:</span>
+              <span>{metacritic}</span>
+            </div>
+          )}
+        </>
+      ) : (
+        <p style={{ margin: '0', color: '#B0B0B0' }}>No ratings available.</p>
+      )}
     </div>
   );
 };
