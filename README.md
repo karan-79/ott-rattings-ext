@@ -1,18 +1,26 @@
 # 🍿 OTT Ratings Extension
 
-Enhance your streaming experience by instantly surfacing external ratings (IMDb, Rotten Tomatoes, Metacritic) for movies and shows on major OTT platforms. Get real-time insights without leaving your favorite streaming service!
-
+Enhance your streaming experience by instantly surfacing external ratings (IMDb, Rotten Tomatoes, Metacritic) and key metadata for movies and shows on major OTT platforms. Get real-time insights without leaving your favorite streaming service!
 
 ## ✨ Features
 
-*   **Cross-Platform Compatibility:** Designed to work seamlessly across popular streaming platforms like Netflix, Amazon Prime Video, Disney+ Hotstar, Hulu, and more.
-*   **Real-time Title Detection:** Automatically detects the movie or show title you're hovering over, previewing, or actively watching.
-*   **Aggregated Ratings:** Fetches and displays consolidated ratings from:
-    *   **IMDb**
-    *   **Rotten Tomatoes**
-    *   **Metacritic**
-*   **Non-Intrusive Overlay:** Ratings appear in a sleek, modern, and non-blocking overlay that blends with the streaming UI.
-*   **Performance Optimized:** Utilizes debouncing for hover events and in-memory caching for API responses to ensure a smooth and efficient experience with minimal network calls.
+*   **Cross-Platform Compatibility:** Designed to work seamlessly across popular streaming platforms like Netflix, Amazon Prime Video, Disney+ Hotstar, and more. (Initial support for Hulu, with dedicated selectors to be added.)
+*   **Real-time Title Detection:** Automatically detects the movie or show title you're hovering over, previewing, or actively watching, adapting to various DOM structures.
+*   **Aggregated Ratings & Metadata:** Fetches and displays consolidated ratings and additional information from OMDb API:
+    *   **IMDb Rating**
+    *   **Rotten Tomatoes Score**
+    *   **Metacritic Score**
+    *   **Release Year**
+    *   **Genre**
+    *   **Runtime**
+    *   **Short Plot Synopsis**
+*   **Intuitive UI Overlay:** Ratings and metadata appear in a sleek, modern, and non-blocking overlay that blends with the streaming UI. Features:
+    *   **Dynamic Positioning:** Automatically adjusts its position to stay within the viewport, even near screen edges.
+    *   **Loading State:** Shows a "Loading..." indicator while fetching data.
+    *   **Error Feedback:** Clearly indicates if ratings are not found or an error occurred.
+    *   **Searched Title Display:** Shows the exact title used for the API search, aiding in debugging and understanding.
+*   **Performance Optimized:** Utilizes debouncing for hover events and client-side caching with a 2-day invalidation period to minimize API calls and ensure a smooth, responsive experience.
+*   **Toggle Feature:** Easily enable or disable the extension directly from its browser action popup.
 *   **Privacy-Respecting:** Designed with privacy in mind – no tracking, no data collection, minimal permissions.
 
 ## 🛠️ Technologies Used
@@ -125,10 +133,31 @@ The extension will be loaded temporarily until you close Firefox. For permanent 
 
 Once the extension is loaded:
 
-1.  Navigate to a supported streaming platform (e.g., Netflix, Amazon Prime Video, Hulu).
+1.  Navigate to a supported streaming platform (e.g., Netflix, Amazon Prime Video, Jio Hotstar).
 2.  Hover your mouse over a movie or TV show thumbnail/card.
-3.  After a brief moment, a sleek overlay will appear next to your cursor, displaying the IMDb, Rotten Tomatoes, and Metacritic ratings for that title.
+3.  After a brief moment, a sleek overlay will appear next to your cursor, displaying the IMDb, Rotten Tomatoes, and Metacritic ratings, along with additional metadata like Year, Genre, Runtime, and a short Plot summary.
 4.  The overlay will disappear when you move your mouse away.
+
+## ⚙️ Extension Toggle
+
+Click on the extension icon in your browser toolbar. A popup will appear with a toggle button to easily enable or disable the extension's functionality across all supported sites.
+
+## 🐛 Troubleshooting
+
+If you encounter issues, here are some common solutions:
+
+*   **Extension not loading/working:**
+    *   Ensure you have correctly followed the "Getting Started" and "Loading the Extension" steps.
+    *   Verify your OMDb API key in the `.env` file is correct and active.
+    *   Check the browser's extension page (`chrome://extensions` or `about:debugging#/runtime/this-firefox`) for any red "Errors" buttons or messages.
+    *   Open the Developer Tools (F12) on the streaming platform page and check the "Console" tab for any JavaScript errors.
+    *   For background script errors, go to `chrome://extensions`, click the "Service Worker" or "background page" link for the extension, and check its console.
+*   **Ratings not appearing for specific titles:**
+    *   The OMDb API might not have data for that specific title or variation.
+    *   The title cleaning logic might need adjustment for very unusual title formats.
+    *   The DOM selectors for the streaming platform might have changed. Inspect the element on the page to find new selectors.
+*   **Overlay position issues:**
+    *   Ensure the `ANIMATION_SETTLE_DELAY` in `src/content/content.ts` is sufficient for the platform's hover animations.
 
 ## 📂 Project Structure
 
